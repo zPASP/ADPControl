@@ -17,4 +17,4 @@ cursor = cnx.cursor()
 # for (id, nome, idade, cargo) in cursor:
 #   print(id, nome, idade, cargo)
 
-fechar =  cursor.close()
+#fechar =  cursor.close()
