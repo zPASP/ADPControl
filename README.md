@@ -1,6 +1,7 @@
 # Gerenciador de Ponto de Funcionários com Python e Streamlit
 
 Este programa em Python com interface em Streamlit permite gerenciar o ponto de funcionários e controlar lojas, endereços e cargos dos funcionários em uma empresa.
+Lembrando que esse projeto esta em fase de desenvolvimento e esta sendo criado para praticar conhecimento e colocar em pratica os aprendizados que venho contruindo.
 
 ## Instalação e execução
 
