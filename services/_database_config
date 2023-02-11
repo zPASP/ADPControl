@@ -1,0 +1,8 @@
+# database_config.py
+
+DB_CONFIG = {
+  'user': '', 
+  'password': '',
+  'host': '',
+  'database': ''
+}
