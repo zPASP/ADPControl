@@ -34,11 +34,12 @@ def inicio():
 
     if cep:
         cepValidado = Cep.validarcep(cep)
+        #st.write(cepValidado)
         if not cepValidado:
             st.warning('DIGITE UM CEP VALIDO')
             validador = False
         else:
-            #st.write(cepValidado)
+            
             col_rua, col_numero, col_bairro = st.columns((2,0.6,1.9))
             rua = col_rua.text_input('Rua:',cepValidado['logradouro'], disabled=True)
             numero = col_numero.text_input('Número:')
@@ -87,8 +88,7 @@ def inicio():
         if cep == "":
             st.warning('CEP - Não pode ficar em branco')
             validador = False
-
-        if numero == "":
+        elif cepValidado != False and numero == "":
             col_rua.warning('NUMERO - Digite o numero da casa')
             col_numero.error('🔺')
             validador = False
