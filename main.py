@@ -4,7 +4,7 @@ import pages.funcionario.cadastrar as cadFuncionario
 import pages.funcionario.bater_ponto as baterPonto
 import pages.loja.cadastrar as cadLoja
 
-st.write(st.session_state)
+#st.write(st.session_state)
 
 if 'pagina_atual' not in st.session_state:
     st.session_state['pagina_atual'] = 'inicio'

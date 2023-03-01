@@ -4,9 +4,11 @@ import Controllers.cepValidador as Cep
 def inicio():
     validador = True
 
-    col_voltar, col_titulo, col_top_vazio = st.columns((1,2,0.5))
+    col_voltar, col_titulo, col_top_vazio = st.columns(3)
 
-    voltar = col_voltar.button("◀ **VOLTAR**")
+    if col_voltar.button("◀ **VOLTAR**"):
+        st.session_state['pagina_atual'] = 'inicio'
+        st.experimental_rerun()
     col_titulo.title('CADASTRAR')
 
 

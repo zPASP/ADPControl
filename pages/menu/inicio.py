@@ -10,13 +10,12 @@ def inicio():
     col_dir, col_ponto, col_esq = st.columns(3)
 
     #PONTO ELETRONICO
-
-
     ponto_form = col_ponto.form("ponto_form")
     ponto_form.write(centralizarPalavra('PONTO ELETRONICO'), unsafe_allow_html=True)
     if ponto_form.form_submit_button('BATER PONTO', type='primary',use_container_width=True):
-        st.session_state['pagina_atual'] = 'bater_ponto'
-        st.experimental_rerun()
+        # st.session_state['pagina_atual'] = 'bater_ponto'
+        # st.experimental_rerun()
+        pass
 
     #GERENCIAMENTO LOJA
     Loja_form = st.form("Loja_form")
