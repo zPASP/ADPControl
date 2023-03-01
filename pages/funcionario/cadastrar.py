@@ -4,7 +4,11 @@ import Controllers.cepValidador as Cep
 def inicio():
     validador = True
 
-    st.title('CADASTRAR')
+    col_voltar, col_titulo, col_top_vazio = st.columns((1,2,0.5))
+
+    voltar = col_voltar.button("◀ **VOLTAR**")
+    col_titulo.title('CADASTRAR')
+
 
     st.subheader("Informações do Funcionario:")
     
@@ -50,12 +54,12 @@ def inicio():
     #verificador
     st.write("""
     """)
-    col_1, col_enviar, col_2 = st.columns(3)
-    enviar = col_enviar.button("CADASTRAR FUNCIONARIO")
+    col_voltar2, col_enviar, col_limpar, col_2 = st.columns((1,2,2,1))
+    #voltar2 = col_voltar2.button("◀ **VOLTAR**")
+    enviar = col_enviar.button("CADASTRAR FUNCIONARIO", type='primary')
+    limpar = col_limpar.button("LIMPAR CADASTRO", type='secondary')
 
     if enviar:
-        
-
         #validador do nome
         if nome == "":
             st.warning('NOME - não pode ficar em branco')
@@ -90,7 +94,7 @@ def inicio():
             validador = False
         elif cepValidado != False and numero == "":
             col_rua.warning('NUMERO - Digite o numero da casa')
-            col_numero.error('🔺')
+            col_numero.error('🔺', icon='⬆')
             validador = False
         
 
