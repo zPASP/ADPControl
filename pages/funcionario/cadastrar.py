@@ -4,12 +4,12 @@ import Controllers.cepValidador as Cep
 def inicio():
     validador = True
 
-    col_voltar, col_titulo, col_top_vazio = st.columns(3)
+    col_voltar, col_titulo, col_top_vazio = st.columns((.6,2,0.1), gap= "large")
 
     if col_voltar.button("◀ **VOLTAR**"):
         st.session_state['pagina_atual'] = 'inicio'
         st.experimental_rerun()
-    col_titulo.title('CADASTRAR')
+    col_titulo.title('CADASTRAR FUNCIONARIO')
 
 
     st.subheader("Informações do Funcionario:")
@@ -79,7 +79,7 @@ def inicio():
         if ddd == "" or telefone == "":
             st.warning('DDD / CELULAR - Não pode ficar em branco')
             validador = False
-        if len(ddd) < 2:
+        elif len(ddd) < 2:
             st.warning('DDD - Invalido')
             validador = False
         elif len(telefone) < 9:
