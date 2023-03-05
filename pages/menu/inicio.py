@@ -23,11 +23,11 @@ def inicio():
     col_verLoja, col_cadLoja = Loja_form.columns(2)
     
     if col_verLoja.form_submit_button('VISUALIZAR LOJA', use_container_width=True, disabled = True):
-        st.session_state['pagina_atual'] = 'cadastra_loja'
+        st.session_state['pagina_atual'] = 'cadastrar_loja'
         st.experimental_rerun()
 
     if col_cadLoja.form_submit_button('CADASTRAR LOJA', use_container_width=True):
-        st.session_state['pagina_atual'] = 'cadastra_loja'
+        st.session_state['pagina_atual'] = 'cadastrar_loja'
         st.experimental_rerun()
 
     ##GERENCIAMENTO FUNCIONARIOS
@@ -36,7 +36,7 @@ def inicio():
     col_verFunc, col_cadfunc = func_form.columns(2)
 
     if col_verFunc.form_submit_button('VISUALIZAR LOJA', use_container_width=True, disabled = True):
-        st.session_state['pagina_atual'] = 'cadastra_loja'
+        st.session_state['pagina_atual'] = 'cadastrar_funcionario'
         st.experimental_rerun()
 
     if col_cadfunc.form_submit_button('CADASTRAR FUNCIONARIO', use_container_width=True):

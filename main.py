@@ -1,7 +1,7 @@
 import streamlit as st
 import pages.menu.inicio as inicio
 import pages.funcionario.cadastrar as cadFuncionario
-import pages.funcionario.bater_ponto as baterPonto
+import pages.ponto.bater_ponto as baterPonto
 import pages.loja.cadastrar as cadLoja
 
 #st.write(st.session_state)
