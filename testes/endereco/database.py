@@ -1,9 +1,3 @@
-import sys
-import os
-# Adiciona o diretório atual ao sys.path
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path)
-
 import database_config as config
 import mysql.connector
 
