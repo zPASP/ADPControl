@@ -2,27 +2,31 @@ import services.database as db
 import models.endereco as endereco
 
 def Incluir(endereco):
-    add_endereco = ("INSERT INTO endereco "
-                    "(id, rua, numero, bairro, cidade, estado, cep)"
-                    "VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s )")
-    data_endereco = (endereco.id, 
-                     endereco.rua, 
-                     endereco.numero, 
-                     endereco.bairro, 
-                     endereco.cidade, 
-                     endereco.estado,  
-                     endereco.cep)
-    db.cursor.execute(add_endereco, data_endereco)
+    try:
+        # db.cnx.cursor()
+        add_endereco = ("INSERT INTO endereco "
+                        "(id, rua, numero, bairro, cidade, estado, cep)"
+                        "VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s )")
+        data_endereco = (endereco.id, 
+                        endereco.rua, 
+                        endereco.numero, 
+                        endereco.bairro, 
+                        endereco.cidade, 
+                        endereco.estado,  
+                        endereco.cep)
+        db.cursor.execute(add_endereco, data_endereco)
 
-    db.cnx.commit()
-    print ('CADASTRO DE ENDEREÇO REALIZADO')
+        db.cnx.commit()
+        print ('CADASTRO DE ENDEREÇO REALIZADO')
 
-    db.cursor.execute("SELECT LAST_INSERT_ID()")
-    endereco_id = db.cursor.fetchone()[0]
+        db.cursor.execute("SELECT LAST_INSERT_ID()")
+        endereco_id = db.cursor.fetchone()[0]
 
-    print(f'Numero do ID do endereço = {endereco_id}')
-
-    db.cursor.close()
+        print(f'Numero do ID do endereço = {endereco_id}')
+    finally:
+        pass
+        # db.cursor.close()
+        # db.cnx.close()
     return endereco_id
 
 

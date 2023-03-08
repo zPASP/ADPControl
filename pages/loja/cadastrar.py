@@ -3,6 +3,7 @@ import models.loja as loja
 import models.endereco as endereco
 import Controllers.cepValidador as Cep
 import Controllers.EnderecoController as EnderecoController
+import Controllers.LojaController as LojaController
 import utils
 
 
@@ -115,5 +116,6 @@ def salvarEndereco(endereco):
     return endereco_id
 
 def salvarLoja(loja):
-    print(loja)
+    loja_id = LojaController.Incluir(loja)
+    print(loja_id)
     pass
