@@ -4,9 +4,7 @@ import models.endereco as endereco
 def Incluir(endereco):
     try:
         print('------------')
-        print('1')
         database = db.Database()
-        print('2')
         database.connect()
         add_endereco = ("INSERT INTO endereco "
                         "(id, rua, numero, bairro, cidade, estado, cep)"
@@ -18,10 +16,7 @@ def Incluir(endereco):
                         endereco.cidade, 
                         endereco.estado,  
                         endereco.cep)
-        print('3')
-        resultado = database.execute_query(add_endereco, data_endereco)
-        print('4')
-        resultado, endereco_id = resultado
+        resultado, endereco_id = database.execute_query(add_endereco, data_endereco)
 
         print ('CADASTRO DE ENDEREÇO REALIZADO')
 
@@ -30,8 +25,6 @@ def Incluir(endereco):
         print(f"Erro: {str(e)}")
     finally:
         database.disconnect() # desconectar do banco de dados
-        # db.cursor.close()
-        # db.cnx.close()
     return endereco_id
 
 

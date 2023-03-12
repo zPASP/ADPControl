@@ -37,11 +37,30 @@ class Database:
         
         self.connection.commit()
         result = cursor.fetchall()
+        # for row in result:
+        # # faça algo com cada linha do resultado
+        #     print(row)
+        #     pass
+
         last_id = cursor.lastrowid
 
         cursor.close()
         self.disconnect()
         return result, last_id
+    
+    def execute_query_one(self, query, params=None):
+        self.connect()
+        cursor = self.connection.cursor(dictionary=True)
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        
+        result = cursor.fetchone()
+
+        cursor.close()
+        self.disconnect()
+        return result
 
 
 

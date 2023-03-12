@@ -72,6 +72,12 @@ def inicio():
         elif len(cnpj) < 14:
             st.warning('CNPJ - Invalido')
             validador = False
+        elif len(cnpj) == 14:
+            existe = LojaController.lojaExiste(cnpj)
+            if existe != None:
+                st.warning(f'Já existe uma Loja com o CNPJ {cnpj}')
+                print('Já existe uma loja com o cnpj informado')
+                validador = False
         
 
         #validador telefone
@@ -94,28 +100,23 @@ def inicio():
             col_numero.error('🔺', icon='⬆')
             validador = False
 
+        
 
         if validador:
             st.success('CADASTRO REALIZADO COM SUCESSO')
-            st.write(
-                cnpj,
-                nome,
-                ddd, 
-                telefone
-            )
 
             endereco_final = endereco.Endereco(0, rua, numero, bairro, cidade, estado, cep)
             
             id_endereco = salvarEndereco(endereco_final)
             
-            #salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
+            salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
 
 def salvarEndereco(endereco):
     endereco_id = EnderecoController.Incluir(endereco)
-    print(endereco.cep)
+    #print(endereco.cep)
     return endereco_id
 
 def salvarLoja(loja):
     loja_id = LojaController.Incluir(loja)
-    print(loja_id)
+    #print(loja_id)
     pass

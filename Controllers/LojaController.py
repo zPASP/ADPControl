@@ -3,7 +3,9 @@ import models.loja as loja
 
 def Incluir(loja):
     try:
-        # db.cnx.cursor()
+        print('------------')
+        database = db.Database()
+        database.connect()
         add_loja = ("INSERT INTO loja "
                         "(cnpj, nome, ddd, telefone, endereco_id)"
                         "VALUES (%s ,%s ,%s ,%s ,%s)")
@@ -12,21 +14,31 @@ def Incluir(loja):
                         loja.ddd, 
                         loja.telefone, 
                         loja.endereco_id)
-        db.cursor.execute(add_loja, data_loja)
-
-        db.cnx.commit()
+        resultado = database.execute_query(add_loja, data_loja)
+        loja_id = loja.cnpj
         print ('CADASTRO DA LOJA REALIZADO')
 
-        db.cursor.execute("SELECT LAST_INSERT_ID()")
-        loja_id = db.cursor.fetchone()[0]
-
-        print(f'Numero do ID da LOJA = {loja_id}')
+        print(f'Numero do CNPJ da LOJA = {loja_id}')
+    except Exception as e:
+        print(f"Erro: {str(e)}")
     finally:
-        pass
-        # db.cursor.close()
-        # db.cnx.close()
+        database.disconnect()
     return loja_id
 
+def lojaExiste(cnpj):
+    try:
+        print('------------')
+        database = db.Database()
+        database.connect()
+        verifica = ("SELECT cnpj FROM loja WHERE cnpj = %s")
+        params = (cnpj,)
+        resultado= database.execute_query_one(verifica, params)
+        print('RESULTADO CNPJ:', resultado)
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
+    return resultado
 
 # teste = endereco.Endereco(0,'RUA 1', '99', 'Bairro don', 'Rio Grande', 'RS', '99999999', 0, 0)
 # retorno = Incluir(teste)
