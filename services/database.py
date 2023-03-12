@@ -7,20 +7,82 @@ sys.path.append(dir_path)
 import database_config as config
 import mysql.connector
 
-cnx = mysql.connector.connect(**config.DB_CONFIG)
+class Database:
+    def __init__(self):
+        self.host = f"{config.DB_CONFIG['host']}"
+        self.user = f"{config.DB_CONFIG['user']}"
+        self.password = f"{config.DB_CONFIG['password']}"
+        self.database = f"{config.DB_CONFIG['database']}"
+        self.connection = None
 
-# cnx = mysql.connector.connect(user=f"{config.DB_CONFIG['user']}", 
-#                               password=f"{config.DB_CONFIG['password']}",
-#                               host=f"{config.DB_CONFIG['host']}",
-#                               database=f"{config.DB_CONFIG['database']}")
+    def connect(self):
+        self.connection = mysql.connector.connect(
+            host=self.host,
+            user=self.user,
+            password=self.password,
+            database=self.database
+        )
+
+    def disconnect(self):
+        if self.connection:
+            self.connection.close()
+
+    def execute_query(self, query, params=None):
+        self.connect()
+        cursor = self.connection.cursor(dictionary=True)
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        
+        self.connection.commit()
+        result = cursor.fetchall()
+        last_id = cursor.lastrowid
+
+        cursor.close()
+        self.disconnect()
+        return result, last_id
 
 
-cursor = cnx.cursor()
 
-# query = "SELECT * FROM funcionario"
-# cursor.execute(query)
 
-# for (id, nome, idade, cargo) in cursor:
-#   print(id, nome, idade, cargo)
 
-#fechar =  cursor.close()
+
+
+
+
+
+
+
+
+
+
+# def connect(self):
+#         self.connection = mysql.connector.connect(
+#             **config.DB_CONFIG
+#         )
+
+# def disconnect(self):
+#         if self.connection:
+#             self.connection.close()
+
+
+
+
+# cnx = mysql.connector.connect()
+
+# # cnx = mysql.connector.connect(user=f"{config.DB_CONFIG['user']}", 
+# #                               password=f"{config.DB_CONFIG['password']}",
+# #                               host=f"{config.DB_CONFIG['host']}",
+# #                               database=f"{config.DB_CONFIG['database']}")
+
+
+# cursor = cnx.cursor()
+
+# # query = "SELECT * FROM funcionario"
+# # cursor.execute(query)
+
+# # for (id, nome, idade, cargo) in cursor:
+# #   print(id, nome, idade, cargo)
+
+# #fechar =  cursor.close()

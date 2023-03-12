@@ -3,6 +3,41 @@ import models.endereco as endereco
 
 def Incluir(endereco):
     try:
+        print('------------')
+        print('1')
+        database = db.Database()
+        print('2')
+        database.connect()
+        add_endereco = ("INSERT INTO endereco "
+                        "(id, rua, numero, bairro, cidade, estado, cep)"
+                        "VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s )")
+        data_endereco = (endereco.id, 
+                        endereco.rua, 
+                        endereco.numero, 
+                        endereco.bairro, 
+                        endereco.cidade, 
+                        endereco.estado,  
+                        endereco.cep)
+        print('3')
+        resultado = database.execute_query(add_endereco, data_endereco)
+        print('4')
+        resultado, endereco_id = resultado
+
+        print ('CADASTRO DE ENDEREÇO REALIZADO')
+
+        print(f'Numero do ID do endereço = {endereco_id}')
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect() # desconectar do banco de dados
+        # db.cursor.close()
+        # db.cnx.close()
+    return endereco_id
+
+
+
+def Incluir1(endereco):
+    try:
         # db.cnx.cursor()
         add_endereco = ("INSERT INTO endereco "
                         "(id, rua, numero, bairro, cidade, estado, cep)"
@@ -30,7 +65,7 @@ def Incluir(endereco):
     return endereco_id
 
 
-# teste = endereco.Endereco(0,'RUA 1', '99', 'Bairro don', 'Rio Grande', 'RS', '99999999', 0, 0)
-# retorno = Incluir(teste)
-# print(retorno)
+#teste = endereco.Endereco(0,'RUA 1', '99', 'Bairro don', 'Rio Grande', 'RS', '99999999', 0, 0)
+#retorno = Incluir(teste)
+#print(retorno)
 

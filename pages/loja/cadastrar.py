@@ -108,7 +108,7 @@ def inicio():
             
             id_endereco = salvarEndereco(endereco_final)
             
-            salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
+            #salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
 
 def salvarEndereco(endereco):
     endereco_id = EnderecoController.Incluir(endereco)
