@@ -31,18 +31,18 @@ class Database:
         self.connect()
         cursor = self.connection.cursor(dictionary=True)
         if params:
+            print('params 1')
             cursor.execute(query, params)
         else:
+            print('query 1')
             cursor.execute(query)
+            print('query 2')
         
-        self.connection.commit()
+        print('execute 1')
         result = cursor.fetchall()
-        # for row in result:
-        # # faça algo com cada linha do resultado
-        #     print(row)
-        #     pass
-
+        print('execute 2')
         last_id = cursor.lastrowid
+        print("last_id:", last_id)
 
         cursor.close()
         self.disconnect()
@@ -60,7 +60,7 @@ class Database:
 
         cursor.close()
         self.disconnect()
-        return result
+        return result 
 
 
 

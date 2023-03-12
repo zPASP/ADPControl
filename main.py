@@ -3,6 +3,7 @@ import pages.menu.inicio as inicio
 import pages.funcionario.cadastrar as cadFuncionario
 import pages.ponto.bater_ponto as baterPonto
 import pages.loja.cadastrar as cadLoja
+import pages.loja.visualizar as verLoja
 
 #st.write(st.session_state)
 
@@ -19,6 +20,8 @@ match st.session_state['pagina_atual']:
         baterPonto.inicio()
     case 'cadastrar_loja':
         cadLoja.inicio()
+    case 'visualizar_loja':
+        verLoja.inicio()
 
 # import models.endereco as endereco
 # import services.database as db

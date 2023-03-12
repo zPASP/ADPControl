@@ -1,5 +1,6 @@
 import services.database as db
 import models.loja as loja
+import pandas as pd
 
 def Incluir(loja):
     try:
@@ -40,7 +41,22 @@ def lojaExiste(cnpj):
         database.disconnect()
     return resultado
 
-# teste = endereco.Endereco(0,'RUA 1', '99', 'Bairro don', 'Rio Grande', 'RS', '99999999', 0, 0)
-# retorno = Incluir(teste)
-# print(retorno)
+def listaLoja():
+    try:
+        print('------------2')
+        database = db.Database()
+        database.connect()
+        print('1 lista')
+        query = ("SELECT * FROM loja")
+        print('2 lista')
+        resultado, id= database.execute_query(query)
+        print('3 lista')
+        df_lojas = pd.DataFrame(resultado)
+        df_lojas['telefone'] = df_lojas['telefone'].astype(str)
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
+    return df_lojas
+
 

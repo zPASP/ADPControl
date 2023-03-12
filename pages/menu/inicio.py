@@ -22,8 +22,8 @@ def inicio():
     Loja_form.write(centralizarPalavra('GERENCIAMENTO LOJA'), unsafe_allow_html=True)
     col_verLoja, col_cadLoja = Loja_form.columns(2)
     
-    if col_verLoja.form_submit_button('VISUALIZAR LOJA', use_container_width=True, disabled = True):
-        st.session_state['pagina_atual'] = 'cadastrar_loja'
+    if col_verLoja.form_submit_button('VISUALIZAR LOJA', use_container_width=True):
+        st.session_state['pagina_atual'] = 'visualizar_loja'
         st.experimental_rerun()
 
     if col_cadLoja.form_submit_button('CADASTRAR LOJA', use_container_width=True):
