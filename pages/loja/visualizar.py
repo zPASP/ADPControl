@@ -24,22 +24,24 @@ def inicio():
 
     lojas = funListaLoja()
     # CSS to inject contained in a string
-    hide_dataframe_row_index = """
-                <style>
-                .row_heading.level0 {display:none}
-                .blank {display:none}
-                </style>
-                """
+    hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
 
-    # Inject CSS with Markdown
-    st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-    st.dataframe(lojas)
+        # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
+    lojas_mostrar = lojas[['cnpj', 'nome', 'ddd', 'telefone']]
+
+    st.table(lojas_mostrar)
 
     if 'statusBt' not in st.session_state:
         st.session_state['statusBt'] = False
 
 
-    botao = st.button('CADASTRAR', disabled=st.session_state['statusBt'])
+    botao = st.button('TESTE', disabled=st.session_state['statusBt'])
 
     if botao:
         st.session_state['statusBt'] = not st.session_state['statusBt']
