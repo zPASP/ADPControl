@@ -103,14 +103,27 @@ def inicio():
         
 
         if validador:
-            # .button("REALIZANDO CADASTRO", key='btnCadastrar', disabled=True)
+            import time
             print ('-VALIDADOR-')
+            barCadastro = st.progress(0, text="CADASTRO VALIDADO - Incluindo no banco de dados")
             endereco_final = endereco.Endereco(0, rua, numero, bairro, cidade, estado, cep)
             
+            barCadastro.progress(20,text="BANCO DE DADOS - Salvar Endereço")
             id_endereco = salvarEndereco(endereco_final)
-            
+
+            barCadastro.progress(50,text=f"BANCO DE DADOS - Salvar Loja")
             salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
             st.success('CADASTRO REALIZADO COM SUCESSO')
+
+            barCadastro.progress(90,text=f"BANCO DE DADOS OK - REDIRECIONAR")
+            totalDirecionar = 90
+            for totalDirecionar in range(30):
+                time.sleep(0.1)
+                barCadastro.progress(totalDirecionar + 1, text=f"BANCO DE DADOS OK - REDIRECIONAR")
+            barCadastro.progress(100,text=f"REDIRECIONANDO")
+            time.sleep(.300)
+            st.session_state['pagina_atual'] = 'inicio'
+            st.experimental_rerun()
 
 def salvarEndereco(endereco):
     endereco_id = EnderecoController.Incluir(endereco)
