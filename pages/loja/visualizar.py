@@ -6,7 +6,9 @@ import Controllers.EnderecoController as EnderecoController
 import Controllers.LojaController as LojaController
 import utils
 
-
+@st.cache_data
+def funListaLoja ():
+    return LojaController.listaLoja()
 
 def inicio():
     validador = True
@@ -20,7 +22,7 @@ def inicio():
 
     st.subheader('Informações da Loja:')
 
-    lojas = LojaController.listaLoja()
+    lojas = funListaLoja()
 
     st.write(lojas)
 

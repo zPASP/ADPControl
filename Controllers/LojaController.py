@@ -33,7 +33,7 @@ def lojaExiste(cnpj):
         database.connect()
         verifica = ("SELECT cnpj FROM loja WHERE cnpj = %s")
         params = (cnpj,)
-        resultado= database.execute_query_one(verifica, params)
+        resultado = database.execute_query_one(verifica, params)
         print('RESULTADO CNPJ:', resultado)
     except Exception as e:
         print(f"Erro: {str(e)}")
@@ -43,14 +43,11 @@ def lojaExiste(cnpj):
 
 def listaLoja():
     try:
-        print('------------2')
+        print('------------')
         database = db.Database()
         database.connect()
-        print('1 lista')
         query = ("SELECT * FROM loja")
-        print('2 lista')
-        resultado, id= database.execute_query(query)
-        print('3 lista')
+        resultado, id= database.view_table(query)
         df_lojas = pd.DataFrame(resultado)
         df_lojas['telefone'] = df_lojas['telefone'].astype(str)
     except Exception as e:

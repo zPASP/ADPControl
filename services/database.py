@@ -28,27 +28,45 @@ class Database:
             self.connection.close()
 
     def execute_query(self, query, params=None):
+        print('-EXECUTE QUERY-')
         self.connect()
         cursor = self.connection.cursor(dictionary=True)
         if params:
-            print('params 1')
             cursor.execute(query, params)
         else:
-            print('query 1')
             cursor.execute(query)
-            print('query 2')
-        
-        print('execute 1')
+
+        self.connection.commit()
+
         result = cursor.fetchall()
-        print('execute 2')
         last_id = cursor.lastrowid
-        print("last_id:", last_id)
+        # print("last_id:", last_id)
+
+        cursor.close()
+        self.disconnect()
+        return result, last_id
+    
+    def view_table(self, query, params=None):
+        print('-VIEW TABLE QUERY-')
+        self.connect()
+        cursor = self.connection.cursor(dictionary=True)
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+
+        # self.connection.commit()
+
+        result = cursor.fetchall()
+        last_id = cursor.lastrowid
+        # print("last_id:", last_id)
 
         cursor.close()
         self.disconnect()
         return result, last_id
     
     def execute_query_one(self, query, params=None):
+        print('-EXECUTE QUERY ONE-')
         self.connect()
         cursor = self.connection.cursor(dictionary=True)
         if params:

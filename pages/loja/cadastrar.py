@@ -56,9 +56,9 @@ def inicio():
 
     col_voltar2, col_enviar, col_limpar, col_2 = st.columns((1,2,2,1))
     #voltar2 = col_voltar2.button("◀ **VOLTAR**")
-    enviar = col_enviar.button("CADASTRAR LOJA", type='primary', use_container_width=True)
+    enviar = col_enviar.button("CADASTRAR LOJA", type='primary', use_container_width=True, key='btnCadastrar', )
     limpar = col_limpar.button("LIMPAR CADASTRO", type='secondary', use_container_width=True)
-
+    
     if enviar:
         #validador do nome
         if nome == "":
@@ -103,17 +103,18 @@ def inicio():
         
 
         if validador:
-            st.success('CADASTRO REALIZADO COM SUCESSO')
-
+            # .button("REALIZANDO CADASTRO", key='btnCadastrar', disabled=True)
+            print ('-VALIDADOR-')
             endereco_final = endereco.Endereco(0, rua, numero, bairro, cidade, estado, cep)
             
             id_endereco = salvarEndereco(endereco_final)
             
             salvarLoja(loja.Loja(cnpj,nome, ddd, telefone,0 ,id_endereco))
+            st.success('CADASTRO REALIZADO COM SUCESSO')
 
 def salvarEndereco(endereco):
     endereco_id = EnderecoController.Incluir(endereco)
-    #print(endereco.cep)
+    #print(endereco_id)
     return endereco_id
 
 def salvarLoja(loja):

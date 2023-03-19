@@ -4,6 +4,7 @@ import models.endereco as endereco
 def Incluir(endereco):
     try:
         print('------------')
+        print('-CADASTRO ENDEREÇO-')
         database = db.Database()
         database.connect()
         add_endereco = ("INSERT INTO endereco "
@@ -17,17 +18,34 @@ def Incluir(endereco):
                         endereco.estado,  
                         endereco.cep)
         resultado, endereco_id = database.execute_query(add_endereco, data_endereco)
-
-        print ('CADASTRO DE ENDEREÇO REALIZADO')
-
+        #print(resultado)
         print(f'Numero do ID do endereço = {endereco_id}')
     except Exception as e:
         print(f"Erro: {str(e)}")
     finally:
-        database.disconnect() # desconectar do banco de dados
+        pass
+        #database.disconnect() # desconectar do banco de dados
     return endereco_id
 
 
+def Excluir(id):
+    try: 
+        print('------------')
+        print(f'-EXCLUIR ENDEREÇO: {id}-')
+        database = db.Database()
+        database.connect()
+
+        remover_endereco = ("DELETE FROM endereco "
+                        "WHERE id"
+                        "VALUES (%s)")
+        resultado = database.execute_query_one(remover_endereco, id)
+        print(f'ENDEREÇO EXCLUIDO: {id}')
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
+    return resultado
+        
 
 def Incluir1(endereco):
     try:
