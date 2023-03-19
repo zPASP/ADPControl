@@ -56,4 +56,15 @@ def listaLoja():
         database.disconnect()
     return df_lojas
 
+def Excluir(cnpj, idEndereco):
+    try:
+        print('------------')
+        queryExcluirEndereco = "DELETE FROM endereco WHERE id = (%s) "
+        queryExcluirLoja = "DELETE FROM loja WHERE cnpj = (%s) "
+        database = db.Database()
+        database.connect()
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
 
