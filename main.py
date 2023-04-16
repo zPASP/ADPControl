@@ -4,8 +4,9 @@ import pages.funcionario.cadastrar as cadFuncionario
 import pages.ponto.bater_ponto as baterPonto
 import pages.loja.cadastrar as cadLoja
 import pages.loja.visualizar as verLoja
+import pages.cargo.cadastrar as cadCargo
 
-#st.write(st.session_state)
+st.write(st.session_state)
 
 if 'pagina_atual' not in st.session_state:
     st.session_state['pagina_atual'] = 'inicio'
@@ -22,6 +23,8 @@ match st.session_state['pagina_atual']:
         cadLoja.inicio()
     case 'visualizar_loja':
         verLoja.inicio()
+    case 'cadastrar_cargo':
+        cadCargo.inicio()
 
 # import models.endereco as endereco
 # import services.database as db

@@ -35,12 +35,26 @@ def inicio():
     func_form.write(centralizarPalavra('GERENCIAMENTO DE FUNCIONARIOS'), unsafe_allow_html=True)
     col_verFunc, col_cadfunc = func_form.columns(2)
 
-    if col_verFunc.form_submit_button('VISUALIZAR LOJA', use_container_width=True, disabled = True):
-        st.session_state['pagina_atual'] = 'cadastrar_funcionario'
+    if col_verFunc.form_submit_button('VISUALIZAR FUNCIONARIO', use_container_width=True, disabled = True):
+        st.session_state['pagina_atual'] = 'visualizar_funcionario'
         st.experimental_rerun()
 
     if col_cadfunc.form_submit_button('CADASTRAR FUNCIONARIO', use_container_width=True):
         st.session_state['pagina_atual'] = 'cadastrar_funcionario'
+        st.experimental_rerun()
+
+
+    ##GERENCIAMENTO CARGOS
+    func_form = st.form("cargo_form")
+    func_form.write(centralizarPalavra('GERENCIAMENTO DE CARGOS'), unsafe_allow_html=True)
+    col_verFunc, col_cadfunc = func_form.columns(2)
+
+    if col_verFunc.form_submit_button('VISUALIZAR CARGO', use_container_width=True, disabled = True):
+        st.session_state['pagina_atual'] = 'visualizar_cargo'
+        st.experimental_rerun()
+
+    if col_cadfunc.form_submit_button('CADASTRAR CARGO', use_container_width=True):
+        st.session_state['pagina_atual'] = 'cadastrar_cargo'
         st.experimental_rerun()
 
 
