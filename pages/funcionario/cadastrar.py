@@ -1,5 +1,10 @@
 import streamlit as st
 import Controllers.cepValidador as Cep
+import models.endereco as endereco
+import models.funcionario as funcionario
+import Controllers.EnderecoController as EnderecoController
+import Controllers.FuncionarioController as FuncionarioController
+
 
 def inicio():
     validador = True
@@ -50,7 +55,7 @@ def inicio():
             rua = col_rua.text_input('Rua:',cepValidado['logradouro'], disabled=True)
             numero = col_numero.text_input('Número:')
             bairro = col_bairro.text_input('Bairro:',cepValidado['bairro'], disabled=True)
-            rua = col_cidade.text_input('Cidade:',cepValidado['localidade'], disabled=True)
+            cidade = col_cidade.text_input('Cidade:',cepValidado['localidade'], disabled=True)
             estado = col_estado.text_input('Estado:',cepValidado['uf'], disabled=True)
 
     #verificador
@@ -102,8 +107,36 @@ def inicio():
 
 
         if validador:
+            import time
+            print ('-VALIDADOR-')
+            barCadastro = st.progress(0, text="CADASTRO VALIDADO - Incluindo no banco de dados")
+            endereco_final = endereco.Endereco(0, rua, numero, bairro, cidade, estado, cep)
+            
+            barCadastro.progress(20,text="BANCO DE DADOS - Salvar Endereço")
+            id_endereco = salvarEndereco(endereco_final)
+
+            barCadastro.progress(50,text=f"BANCO DE DADOS - Salvar Funcionario")
+            salvarFuncionario(funcionario.Funcionario(cpf, nome, ddd, telefone, 1, salario, id_endereco, "11231231231231", 0, 0))
             st.success('CADASTRO REALIZADO COM SUCESSO')
 
+            barCadastro.progress(90,text=f"BANCO DE DADOS OK - REDIRECIONAR")
+            totalDirecionar = 90
+            for totalDirecionar in range(30):
+                time.sleep(0.1)
+                barCadastro.progress(totalDirecionar + 1, text=f"BANCO DE DADOS OK - REDIRECIONAR")
+            barCadastro.progress(100,text=f"REDIRECIONANDO")
+            time.sleep(.300)
+            st.session_state['pagina_atual'] = 'inicio'
+            st.rerun()
+
+
+def salvarEndereco(endereco):
+    endereco_id = EnderecoController.Incluir(endereco)
+    return endereco_id
+
+def salvarFuncionario(funcionario):
+    funcionario_id = FuncionarioController.Incluir(funcionario)
+    pass
 
     # Every form must have a submit button.
     #submitted = st.form_submit_button("CADASTRAR")

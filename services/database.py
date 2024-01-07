@@ -38,8 +38,8 @@ class Database:
 
         self.connection.commit()
 
-        result = cursor.fetchall()
-        last_id = cursor.lastrowid
+        #result = cursor.fetchall()
+        result = last_id = cursor.lastrowid
         # print("last_id:", last_id)
 
         cursor.close()
