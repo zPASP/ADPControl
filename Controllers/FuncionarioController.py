@@ -5,7 +5,6 @@ def Incluir(funcionario):
     try:
         print('------------')
         print('-CADASTRO FUNCIONARIO-')
-        print(funcionario.endereco_id)
         database = db.Database()
         database.connect()
         add_funcionario = ("INSERT INTO funcionario "
@@ -31,8 +30,36 @@ def Incluir(funcionario):
         #database.disconnect() # desconectar do banco de dados
     return funcionario_id
 
+def existeFuncionario(cpf):
+    try:
+        print("-----------\nVERIFICAR EXISTE FUNCIONARIO")
+        database = db.Database()
+        database.connect()
+        verifica = ("SELECT cpf FROM funcionario WHERE cpf = %s")
+        params = (cpf,)
+        resultado = database.execute_query_one(verifica, params)
+        print('RESULTADO CNPJ: ', resultado)
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
+    return resultado
 
 
+def lojaExiste(cnpj):
+    try:
+        print('------------')
+        database = db.Database()
+        database.connect()
+        verifica = ("SELECT cnpj FROM loja WHERE cnpj = %s")
+        params = (cnpj,)
+        resultado = database.execute_query_one(verifica, params)
+        print('RESULTADO CNPJ:', resultado)
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+    finally:
+        database.disconnect()
+    return resultado
 
 
 

@@ -79,6 +79,9 @@ def inicio():
         elif len(cpf) < 11:
             st.warning('CPF - Invalido')
             validador = False
+        elif verificaFuncionario(cpf) == True:
+            st.error('CPF JÁ CADASTRADO NO BANCO DE DADOS')
+            validador = False
 
         #validador telefone
         if ddd == "" or telefone == "":
@@ -126,8 +129,8 @@ def inicio():
                 barCadastro.progress(totalDirecionar + 1, text=f"BANCO DE DADOS OK - REDIRECIONAR")
             barCadastro.progress(100,text=f"REDIRECIONANDO")
             time.sleep(.300)
-            st.session_state['pagina_atual'] = 'inicio'
-            st.rerun()
+            # st.session_state['pagina_atual'] = 'inicio'
+            # st.rerun()
 
 
 def salvarEndereco(endereco):
@@ -137,6 +140,14 @@ def salvarEndereco(endereco):
 def salvarFuncionario(funcionario):
     funcionario_id = FuncionarioController.Incluir(funcionario)
     pass
+
+def verificaFuncionario(cpf):
+    verificaFuncionario = FuncionarioController.existeFuncionario(cpf)
+    if verificaFuncionario:
+        if verificaFuncionario['cpf'] == cpf:
+            print("Funcionario já cadastrado")
+            return True
+    return False
 
     # Every form must have a submit button.
     #submitted = st.form_submit_button("CADASTRAR")
