@@ -11,7 +11,11 @@ Para instalar e executar o programa, siga estes passos:
 
 2. Navegue até o diretório raiz do projeto e instale as dependências com o comando `pip install -r requirements.txt`.
 
-3. Execute o programa com o comando `streamlit run main.py`.
+3. Configurar o arquivo dentro da pasta services `database_config` colocando as informações do seu banco de dados.
+
+4. Dentro da pasta banco de dados tem o arquivo `banco.sql` codigo sql para rodar no seu banco de dados.
+
+5. Execute o programa com o comando `streamlit run main.py`.
 
 
 ## Recursos e Funcionalidades
