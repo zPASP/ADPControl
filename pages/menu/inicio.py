@@ -14,7 +14,7 @@ def inicio():
     ponto_form.write(centralizarPalavra('PONTO ELETRONICO'), unsafe_allow_html=True)
     if ponto_form.form_submit_button('BATER PONTO', type='primary',use_container_width=True):
         # st.session_state['pagina_atual'] = 'bater_ponto'
-        # st.experimental_rerun()
+        # st.rerun()
         pass
 
     #GERENCIAMENTO LOJA
@@ -24,11 +24,11 @@ def inicio():
     
     if col_verLoja.form_submit_button('VISUALIZAR LOJA', use_container_width=True):
         st.session_state['pagina_atual'] = 'visualizar_loja'
-        st.experimental_rerun()
+        st.rerun()
 
     if col_cadLoja.form_submit_button('CADASTRAR LOJA', use_container_width=True):
         st.session_state['pagina_atual'] = 'cadastrar_loja'
-        st.experimental_rerun()
+        st.rerun()
 
     ##GERENCIAMENTO FUNCIONARIOS
     func_form = st.form("funcionario_form")
@@ -37,11 +37,11 @@ def inicio():
 
     if col_verFunc.form_submit_button('VISUALIZAR FUNCIONARIO', use_container_width=True, disabled = True):
         st.session_state['pagina_atual'] = 'visualizar_funcionario'
-        st.experimental_rerun()
+        st.rerun()
 
     if col_cadfunc.form_submit_button('CADASTRAR FUNCIONARIO', use_container_width=True):
         st.session_state['pagina_atual'] = 'cadastrar_funcionario'
-        st.experimental_rerun()
+        st.rerun()
 
 
     ##GERENCIAMENTO CARGOS
@@ -51,19 +51,19 @@ def inicio():
 
     if col_verFunc.form_submit_button('VISUALIZAR CARGO', use_container_width=True, disabled = True):
         st.session_state['pagina_atual'] = 'visualizar_cargo'
-        st.experimental_rerun()
+        st.rerun()
 
     if col_cadfunc.form_submit_button('CADASTRAR CARGO', use_container_width=True):
         st.session_state['pagina_atual'] = 'cadastrar_cargo'
-        st.experimental_rerun()
+        st.rerun()
 
 
     ##
     if st.button('EDITAR FUNCIONARIO', disabled = True):
         st.session_state['pagina_atual'] = 'cadastrar'
-        st.experimental_rerun()
+        st.rerun()
 
     if st.button('VISUALIZAR PONTO', disabled = True):
         st.session_state['pagina_atual'] = 'cadastrar'
-        st.experimental_rerun()
+        st.rerun()
     

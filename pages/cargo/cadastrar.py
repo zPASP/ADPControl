@@ -12,7 +12,7 @@ def inicio():
 
     if col_voltar.button("◀ **VOLTAR**"):
         st.session_state['pagina_atual'] = 'inicio'
-        st.experimental_rerun()
+        st.rerun()
     col_titulo.title('CADASTRAR CARGO')
 
     st.subheader('Informações do cargo:')
@@ -61,7 +61,7 @@ def inicio():
             barCadastro.progress(100,text=f"REDIRECIONANDO")
             time.sleep(.300)
             st.session_state['pagina_atual'] = 'inicio'
-            st.experimental_rerun()
+            st.rerun()
 
 def salvarCargo(cargo):
     cargo_id = CargoController.Incluir(cargo)

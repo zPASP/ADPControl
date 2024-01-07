@@ -10,7 +10,7 @@ st.write(st.session_state)
 
 if 'pagina_atual' not in st.session_state:
     st.session_state['pagina_atual'] = 'inicio'
-    st.experimental_rerun()
+    st.rerun()
 
 match st.session_state['pagina_atual']:
     case 'inicio':

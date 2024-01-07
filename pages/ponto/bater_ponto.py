@@ -8,7 +8,7 @@ def inicio():
 
     if col_voltar.button("◀ **VOLTAR**"):
         st.session_state['pagina_atual'] = 'inicio'
-        st.experimental_rerun()
+        st.rerun()
     col_titulo.title('CADASTRAR LOJA')
 
     st.subheader('Informações da Loja:')

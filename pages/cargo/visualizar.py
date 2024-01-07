@@ -17,7 +17,7 @@ def inicio():
 
     if col_voltar.button("◀ **VOLTAR**"):
         st.session_state['pagina_atual'] = 'inicio'
-        st.experimental_rerun()
+        st.rerun()
     col_titulo.title('VISUALIZAR LOJA(s)')
 
     st.subheader('Informações da Loja:')
@@ -45,4 +45,4 @@ def inicio():
 
     if botao:
         st.session_state['statusBt'] = not st.session_state['statusBt']
-        st.experimental_rerun()
+        st.rerun()
