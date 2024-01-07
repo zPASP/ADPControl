@@ -18,6 +18,13 @@ Para instalar e executar o programa, siga estes passos:
 5. Execute o programa com o comando `streamlit run main.py`.
 
 
+## Ajustes futuros
+
+ - Incluir visusalizar funcionarios
+ - 
+ - No cadastro dos funcionarios incluir o controle de pegar a loja e cargos cadastrados
+
+
 ## Recursos e Funcionalidades
 
 - Gerenciar o ponto de funcionários.
